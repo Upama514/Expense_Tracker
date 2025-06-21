@@ -47,7 +47,8 @@ public class ExpenseController {
         return expenseService.filterByCategory(principal.getName(), category);
     }
 
-    @GetMapping("/filter/date")
+    // ✅ FIXED: Changed from "/filter/date" to "/filter/dates"
+    @GetMapping("/filter/dates")
     public List<Expense> filterByDate(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
@@ -76,7 +77,6 @@ public class ExpenseController {
         }
     }
 
-    // New Dashboard endpoint
     @GetMapping("/dashboard")
     public DashboardResponse getDashboard(Principal principal) {
         return expenseService.getDashboard(principal.getName());
